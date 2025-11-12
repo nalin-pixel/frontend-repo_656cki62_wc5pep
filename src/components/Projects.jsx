@@ -24,7 +24,7 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section id="work" className="relative py-24 bg-[#0A0B13]">
+    <section id="work" className="relative py-24 bg-[color:var(--lux-bg-soft)]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10">
           <h2 className="text-white text-3xl sm:text-4xl font-semibold">Selected Work</h2>
@@ -42,9 +42,9 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.4, delay: i * 0.05 }}
-              className="group relative rounded-2xl border border-white/10 bg-gradient-to-b from-white/10 to-white/5 p-6 hover:from-white/15 hover:to-white/10 transition overflow-hidden"
+              className="group lux-card hover:bg-white/10"
             >
-              <div className="absolute -inset-px rounded-2xl bg-gradient-to-tr from-indigo-500/20 via-sky-500/20 to-cyan-500/20 opacity-0 group-hover:opacity-100 blur-xl transition" />
+              <div className="absolute -inset-px rounded-2xl bg-[radial-gradient(400px_200px_at_30%_-10%,rgba(200,164,93,0.22),transparent_60%)] opacity-0 group-hover:opacity-100 transition" />
               <div className="relative">
                 <div className="flex items-center justify-between">
                   <h3 className="text-white text-xl font-medium">{p.title}</h3>

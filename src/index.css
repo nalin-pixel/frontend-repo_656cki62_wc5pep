@@ -5,42 +5,60 @@
 @layer base {
   :root {
     --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --font-geist: 'Geist', system-ui, sans-serif;
-    --font-geist-mono: 'Geist Mono', monospace;
-    --font-mona: 'Mona Sans', system-ui, sans-serif;
-    --font-ibm-plex: 'IBM Plex Sans', system-ui, sans-serif;
-    --font-manrope: 'Manrope', system-ui, sans-serif;
+    --lux-bg: #06070D;
+    --lux-bg-soft: #0A0B13;
+    --lux-fg: #F5F7FB;
+    --lux-muted: rgba(255,255,255,0.64);
+    --lux-ring: #C8A45D; /* soft gold */
   }
 
   html {
     font-family: var(--font-sans);
     font-feature-settings: "rlig" 1, "calt" 1;
+    scroll-behavior: smooth;
   }
 
   body {
-    @apply antialiased;
+    @apply antialiased bg-[color:var(--lux-bg)] text-[color:var(--lux-fg)];
+    background-image:
+      radial-gradient(1200px 600px at 20% -10%, rgba(200,164,93,0.10), transparent 60%),
+      radial-gradient(1000px 500px at 110% 10%, rgba(99,102,241,0.10), transparent 60%);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--lux-ring) 35%, white 0%);
+    color: #0c0c0f;
   }
 }
 
-/* Custom utility classes for shadcn/ui patterns */
-@layer utilities {
-  .animate-in {
-    animation-name: animateIn;
-    animation-duration: 350ms;
-    --tw-enter-opacity: initial;
-    --tw-enter-scale: initial;
-    --tw-enter-rotate: initial;
-    --tw-enter-translate-x: initial;
-    --tw-enter-translate-y: initial;
+/* Component sugar */
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition;
   }
+  .btn-primary {
+    @apply text-black bg-white hover:bg-white/90;
+  }
+  .btn-ghost {
+    @apply text-white border border-white/15 bg-white/5 hover:bg-white/10 backdrop-blur;
+  }
+  .lux-card {
+    @apply relative rounded-2xl border border-white/10 bg-white/5 backdrop-blur p-6 overflow-hidden;
+  }
+}
 
-  .animate-out {
-    animation-name: animateOut;
-    animation-duration: 350ms;
-    --tw-exit-opacity: initial;
-    --tw-exit-scale: initial;
-    --tw-exit-rotate: initial;
-    --tw-exit-translate-x: initial;
-    --tw-exit-translate-y: initial;
-  }
+/* Subtle in/out utility (for Motion-less environments) */
+@layer utilities {
+  .animate-in { animation: animateIn 380ms ease-out both; }
+  .animate-out { animation: animateOut 320ms ease-in both; }
+}
+
+@keyframes animateIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes animateOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(6px); }
 }
